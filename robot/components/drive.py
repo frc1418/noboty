@@ -11,8 +11,6 @@ class Drive:
     sd = NetworkTable
 
     def __init__(self):
-        self.sd = NetworkTable.getTable('/SmartDashboard')
-
         self.enabled = False
 
     def on_enable(self):
@@ -29,8 +27,8 @@ class Drive:
         :param y: The speed that the robot should drive in the Y direction. -1 is forward. [-1.0..1.0]
         :param rotation: The rate of rotation for the robot that is completely independent of the translation. 1 is rotate to the right [-1.0..1.0]
         """
-        self.y = max(min(y, 1), -1)
-        self.rotation = max(min(1.0, rotation), -1)
+        self.y = y
+        self.rotation = rotation
 
     def execute(self):
         """Actually drive."""

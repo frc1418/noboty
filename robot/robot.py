@@ -17,9 +17,6 @@ class Bot(magicbot.MagicRobot):
         # NavX (purple board on top of the RoboRIO)
         self.navx = navx.AHRS.create_spi()
 
-        # Initialize SmartDashboard
-        self.sd = NetworkTable.getTable('SmartDashboard')
-
         # Joysticks
         self.left_joystick = wpilib.Joystick(0)
         self.right_joystick = wpilib.Joystick(1)
