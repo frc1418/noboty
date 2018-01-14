@@ -99,3 +99,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# RobotPy configs
+.deploy_cfg
+.installer_config
