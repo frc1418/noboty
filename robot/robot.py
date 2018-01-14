@@ -7,6 +7,7 @@ from components import drive
 
 from robotpy_ext.common_drivers import navx
 
+
 class Bot(magicbot.MagicRobot):
     drive = drive.Drive
 
@@ -24,13 +25,18 @@ class Bot(magicbot.MagicRobot):
         self.rr_motor = wpilib.Victor(3)
         self.robot_drive = wpilib.RobotDrive(self.lf_motor, self.lr_motor, self.rf_motor, self.rr_motor)
 
-    def autonomous(self): pass
+    def autonomous(self):
+        super().autonomous()
+
     def disabledPeriodic(self): pass
     def disabledInit(self): pass
     def teleopInit(self): pass
 
     def teleopPeriodic(self):
         self.drive.move(-self.left_joystick.getY(), self.right_joystick.getX())
+
+        if self.right_joystick.getRawButton(4):
+            self.drive.move(-1, 0)
 
 
 if __name__ == '__main__':
