@@ -1,4 +1,5 @@
 import wpilib
+import wpilib.drive
 
 ENCODER_ROTATION = 1023
 WHEEL_DIAMETER = 7.639
@@ -7,7 +8,7 @@ SARAH_MULTIPLIER = 0.5
 
 
 class Drive:
-    robot_drive = wpilib.RobotDrive
+    robot_drive = wpilib.drive.DifferentialDrive
 
     def __init__(self):
         self.enabled = False

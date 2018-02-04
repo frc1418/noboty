@@ -5,6 +5,7 @@ import wpilib
 
 from robotpy_ext.control.button_debouncer import ButtonDebouncer
 from components import drive
+import wpilib.drive
 
 ROT_COR = -0.145
 
@@ -25,7 +26,7 @@ class Bot(magicbot.MagicRobot):
         self.rf_motor = wpilib.Victor(0b10)  # => 2
         self.rr_motor = wpilib.Victor(0b11)  # => 3
 
-        self.robot_drive = wpilib.DifferentialDrive(wpilib.SpeedControllerGroup(self.lf_motor, self.lr_motor),
+        self.robot_drive = wpilib.drive.DifferentialDrive(wpilib.SpeedControllerGroup(self.lf_motor, self.lr_motor),
                                                     wpilib.SpeedControllerGroup(self.rf_motor, self.rr_motor))
 
         self.btn_sarah = ButtonDebouncer(self.joystick, 2)
