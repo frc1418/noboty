@@ -24,7 +24,9 @@ class Bot(magicbot.MagicRobot):
         self.lr_motor = wpilib.Victor(0b01)  # => 1
         self.rf_motor = wpilib.Victor(0b10)  # => 2
         self.rr_motor = wpilib.Victor(0b11)  # => 3
-        self.robot_drive = wpilib.RobotDrive(self.lf_motor, self.lr_motor, self.rf_motor, self.rr_motor)
+
+        self.robot_drive = wpilib.DifferentialDrive(wpilib.SpeedControllerGroup(self.lf_motor, self.lr_motor),
+                                                    wpilib.SpeedControllerGroup(self.rf_motor, self.rr_motor))
 
         self.btn_sarah = ButtonDebouncer(self.joystick, 2)
         self.sarah = False
