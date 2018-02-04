@@ -8,7 +8,7 @@ SARAH_MULTIPLIER = 0.5
 
 
 class Drive:
-    robot_drive = wpilib.drive.DifferentialDrive
+    drivetrain = wpilib.drive.DifferentialDrive
 
     def __init__(self):
         self.enabled = False
@@ -36,7 +36,7 @@ class Drive:
 
     def execute(self):
         """Actually drive."""
-        self.robot_drive.arcadeDrive(self.y, -self.rotation)
+        self.drivetrain.arcadeDrive(self.y, -self.rotation)
 
         # Prevent robot from driving by default
         self.y = 0
