@@ -15,4 +15,4 @@ This mode cuts the speed of the robot in half, for precision movement in confine
 [See contributors](https://github.com/frc1418/noboty/graphs/contributors)
 
 ## Licensing
-This software is protected under the MIT License.
+This software is protected under the [MIT License](LICENSE).
