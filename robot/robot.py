@@ -27,6 +27,8 @@ class Bot(magicbot.MagicRobot):
         #self.lr_motor = wpilib.Victor(0b01)  # => 1
         #self.rf_motor = wpilib.Victor(0b10)  # => 2
         #self.rr_motor = wpilib.Victor(0b11)  # => 3
+        # TODO: This is not in any way an ideal numbering system.
+        # The PWM ports should be redone to use the old layout above.
         self.lf_motor = wpilib.Victor(9)
         self.lr_motor = wpilib.Victor(8)
         self.rf_motor = wpilib.Victor(7)
