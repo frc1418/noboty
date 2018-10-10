@@ -105,3 +105,4 @@ ENV/
 .installer_config
 
 .DS_Store
+.pytest_cache
