@@ -23,26 +23,26 @@ class Bot(magicbot.MagicRobot):
         #   Dig | 0/1
         #   2^1 | Left/Right
         #   2^0 | Front/Rear
-        self.lf_motor = wpilib.Victor(0b00) # =>0
-        self.lr_motor = wpilib.Victor(0b01) # =>1
-        self.rf_motor = wpilib.Victor(0b10) # =>2
-        self.rr_motor = wpilib.Victor(0b11) # =>3
+        self.lf_motor = wpilib.Victor(9) # =>0
+        self.lr_motor = wpilib.Victor(8) # =>1
+        self.rf_motor = wpilib.Victor(7) # =>2
+        self.rr_motor = wpilib.Victor(6) # =>3
 
         self.drivetrain = wpilib.drive.DifferentialDrive(wpilib.SpeedControllerGroup(self.lf_motor, self.lr_motor),
                                                     wpilib.SpeedControllerGroup(self.rf_motor, self.rr_motor))
 
-        self.btn_sarah = ButtonDebouncer(self.joystick, 2)
+        self.btn_sarah = ButtonDebouncer(self.joystick, 4)
         self.sarah = False
 
         # Intake
-        self.intake_wheel_left = wpilib.Spark(5)
-        self.intake_wheel_right = wpilib.Spark(4)
+        self.intake_wheel_left = wpilib.Spark(0)
+        self.intake_wheel_right = wpilib.Spark(1)
         self.intake_wheels = wpilib.SpeedControllerGroup(self.intake_wheel_left,
                                                          self.intake_wheel_right)
         self.intake_wheels.setInverted(True)
 
-        self.btn_pull = JoystickButton(self.joystick, 3)
-        self.btn_push = JoystickButton(self.joystick, 1)
+        self.btn_pull = JoystickButton(self.joystick, 1)
+        self.btn_push = JoystickButton(self.joystick, 2)
 
     def autonomous(self):
         super().autonomous()
@@ -53,12 +53,12 @@ class Bot(magicbot.MagicRobot):
 
     def teleopPeriodic(self):
         # Normal joysticks
-        self.drive.move(-self.joystick.getY(),self.joystick.getX())
+        #self.drive.move(-self.joystick.getY(),self.joystick.getX())
 
         # Corrections for aviator joystick
-        #self.drive.move(-2*(self.joystick.getY()+.5),
-        #                2*(self.joystick.getX()+.5)+ROT_COR,
-        #                sarah=self.sarah)
+        self.drive.move(-2*(self.joystick.getY()+.5),
+                        2*(self.joystick.getX()+.5)+ROT_COR,
+                        sarah=self.sarah)
 
         if self.btn_sarah:
             self.sarah = not self.sarah
