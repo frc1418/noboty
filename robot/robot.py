@@ -6,6 +6,7 @@ import wpilib
 from robotpy_ext.control.button_debouncer import ButtonDebouncer
 from wpilib.buttons import JoystickButton
 from components import drive, intake
+from automations import align
 import wpilib.drive
 import navx
 
@@ -15,6 +16,8 @@ ROT_COR = -0.145
 class Bot(magicbot.MagicRobot):
     drive: drive.Drive
     intake: intake.Intake
+
+    align: align.Align
 
     def createObjects(self):
         # Joysticks
