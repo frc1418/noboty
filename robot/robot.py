@@ -7,6 +7,7 @@ from robotpy_ext.control.button_debouncer import ButtonDebouncer
 from wpilib.buttons import JoystickButton
 from components import drive, intake
 import wpilib.drive
+import navx
 
 ROT_COR = -0.145
 
@@ -44,6 +45,8 @@ class Bot(magicbot.MagicRobot):
         self.btn_pull = JoystickButton(self.joystick, 1)
         self.btn_push = JoystickButton(self.joystick, 2)
 
+        self.navx = navx.AHRS.create_spi()
+
     def autonomous(self):
         super().autonomous()
 
@@ -52,6 +55,7 @@ class Bot(magicbot.MagicRobot):
     def teleopInit(self): pass
 
     def teleopPeriodic(self):
+        print(self.navx.getYaw())
         # Normal joysticks
         #self.drive.move(-self.joystick.getY(),self.joystick.getX())
 
