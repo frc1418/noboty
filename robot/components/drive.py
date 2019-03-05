@@ -1,5 +1,6 @@
 import wpilib
 import wpilib.drive
+import navx
 
 ENCODER_ROTATION = 1023
 WHEEL_DIAMETER = 7.639
