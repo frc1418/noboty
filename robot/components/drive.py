@@ -13,13 +13,9 @@ class Drive:
 
     navx: navx.AHRS
 
-    align_kp = (0.99)
-    """
-    align_ki = (0.20)
-    align_kd = (0.00)
-    """
-    align_tolerance = (1)
-    align_max_rot = (.3)
+    align_kp = .01
+    align_tolerance = 1
+    align_max_rot = 1
     previous_error = 0
 
     def __init__(self):
@@ -28,10 +24,7 @@ class Drive:
     def on_enable(self):
         self.y = 0
         self.rotation = 0
-
-    # Verb functions -- these functions do NOT talk to motors directly. This
-    # allows multiple callers in the loop to call our functions without
-    # conflicts.
+        self.i_err = 0
 
     def move(self, y, rotation, sarah=False):
         """
@@ -67,8 +60,7 @@ class Drive:
             angle_error -= 360
         if abs(angle_error) > self.align_tolerance:
             self.i_err += angle_error
-            self.rot = self.align_kp * angle_error + self.align_ki * self.i_err + self.align_kd * (self.previous_error - angle_error) / 0.020
-            self.rot = max(min(self.align_max_rot, self.rot), -self.align_max_rot)
+            self.rotation = self.align_kp * angle_error
 
             self.previous_error = angle_error
             return False

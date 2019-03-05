@@ -19,6 +19,7 @@ class Align(StateMachine):
         """
         Engage automation.
         """
+        print('I am running!')
         self.engage()
 
     @state(first=True, must_finish=True)
@@ -27,7 +28,7 @@ class Align(StateMachine):
         Turn to face tower.
         """
         if initial_call:
-            self.terminal_angle = self.drive.angle + self.yaw
+            # self.terminal_angle = self.drive.angle + self.yaw
             self.terminal_angle = self.drive.angle + 45
         if self.drive.align(self.terminal_angle):
             self.next_state('advance')

@@ -14,10 +14,10 @@ ROT_COR = -0.145
 
 
 class Bot(magicbot.MagicRobot):
+    align: align.Align
+
     drive: drive.Drive
     intake: intake.Intake
-
-    align: align.Align
 
     def createObjects(self):
         # Joysticks
@@ -47,6 +47,7 @@ class Bot(magicbot.MagicRobot):
 
         self.btn_pull = JoystickButton(self.joystick, 1)
         self.btn_push = JoystickButton(self.joystick, 2)
+        self.btn_align = JoystickButton(self.joystick, 11)
 
         self.navx = navx.AHRS.create_spi()
 
@@ -69,6 +70,7 @@ class Bot(magicbot.MagicRobot):
         #                2*(self.joystick.getX()+.5)+ROT_COR,
         #                sarah=self.sarah)
 
+
         if self.btn_sarah:
             self.sarah = not self.sarah
 
@@ -76,6 +78,9 @@ class Bot(magicbot.MagicRobot):
             self.intake.pull()
         elif self.btn_push.get():
             self.intake.push()
+
+        if self.btn_align.get():
+            self.align.seek()
 
 
 if __name__ == '__main__':
